@@ -1,0 +1,15 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">AMA Transport Logistics</title>
+  <desc id="desc">Placeholder logo for AMA Transport Logistics</desc>
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3DDCFF"/>
+      <stop offset="100%" stop-color="#0A4BFF"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" rx="32" fill="#050915"/>
+  <path d="M36 128c22 14 54 22 82 18 24-3 47-14 52-32 5-17-11-33-33-33-19 0-33 10-50 10-21 0-39-14-48-27" stroke="#3DDCFF" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <text x="100" y="102" text-anchor="middle" font-family="Inter, system-ui" font-size="52" font-weight="800" fill="url(#grad)">AMA</text>
+  <text x="100" y="134" text-anchor="middle" font-family="Inter, system-ui" font-size="14" letter-spacing="4" font-weight="600" fill="#A4B8D8">TRANSPORT</text>
+  <text x="100" y="152" text-anchor="middle" font-family="Inter, system-ui" font-size="12" letter-spacing="5" font-weight="700" fill="#EC5D57">LOGISTICS</text>
+</svg>
