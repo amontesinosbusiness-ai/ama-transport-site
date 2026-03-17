@@ -71,7 +71,7 @@ export function Navbar() {
           {links.map((link) => (
             <Link
               key={link.href}
-              href={link.href}
+              href={link.href as any}
               className="text-slate-100"
               onClick={() => setOpen(false)}
             >
