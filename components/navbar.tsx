@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Menu, X } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
 const links = [
   { href: "/", label: "Home" },
@@ -41,7 +41,7 @@ export function Navbar() {
           {links.map((link) => (
             <Link
               key={link.href}
-              href={link.href}
+              href={link.href as any}
               className="hover:text-white transition-colors"
             >
               {link.label}
@@ -72,7 +72,7 @@ export function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-slate-100" 
+              className="text-slate-100"
               onClick={() => setOpen(false)}
             >
               {link.label}
