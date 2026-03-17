@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import type { Route } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -41,7 +42,7 @@ export function Navbar() {
           {links.map((link) => (
             <Link
               key={link.href}
-              href={link.href as any}
+              href={link.href as Route}
               className="hover:text-white transition-colors"
             >
               {link.label}
@@ -71,7 +72,7 @@ export function Navbar() {
           {links.map((link) => (
             <Link
               key={link.href}
-              href={link.href as any}
+              href={link.href as Route}
               className="text-slate-100"
               onClick={() => setOpen(false)}
             >
