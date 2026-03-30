@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
+import { Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
-import { Mail, MapPin, Linkedin, Instagram, Phone } from "lucide-react";
+import Link from "next/link";
 
 export function Footer() {
   return (
@@ -39,8 +39,13 @@ export function Footer() {
         <div>
           <p className="font-semibold text-white mb-3">Contact</p>
           <div className="space-y-2 text-slate-300">
-            <p className="flex items-center gap-2"><Mail size={16} /> info@AMATransportLogistics.com</p>
-            <p className="flex items-center gap-2"><Phone size={16} /> (786) 516-1416</p>
+            <a href="mailto:info@AMATransportLogistics.com" className="flex items-center gap-2 hover:text-cyan-300 transition-colors w-fit">
+            <Mail size={16} /> info@AMATransportLogistics.com
+            </a>
+
+            <a href="tel:+17865161416" className="flex items-center gap-2 hover:text-cyan-300 transition-colors w-fit">
+            <Phone size={16} /> (786) 516-1416
+           </a>
             <p className="flex items-center gap-2"><MapPin size={16} /> 7701 NW 46th St, Miami, Florida 33166</p>
           </div>
         </div>
