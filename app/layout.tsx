@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${grotesk.className} bg-background text-foreground min-h-screen flex flex-col`}>
         {/* <Navbar /> */}
         <main className="flex-1">{children}</main>
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );
