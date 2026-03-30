@@ -2,11 +2,12 @@
 
 import { SectionHeading } from "@/components/section-heading";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
 import { Mail, MapPin } from "lucide-react";
+import { useState } from "react";
 
 export default function ContactPage() {
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [error, setError] = useState("");
 
   return (
     <div className="section-padding space-y-12">
@@ -21,9 +22,35 @@ export default function ContactPage() {
       <div className="container grid gap-8 lg:grid-cols-[1.1fr_0.9fr] items-start">
         <form
           className="glass rounded-3xl p-8 border border-white/10 space-y-4"
-          onSubmit={(e) => {
+          onSubmit={async (e) => {
             e.preventDefault();
-            setSubmitted(true);
+            setStatus("loading");
+            setError("");
+            const form = e.currentTarget as HTMLFormElement;
+            const data = new FormData(form);
+
+            const payload = {
+              name: data.get("name")?.toString() || "",
+              email: data.get("email")?.toString() || "",
+              phone: data.get("phone")?.toString() || "",
+              company: data.get("company")?.toString() || "",
+              message: data.get("message")?.toString() || ""
+            };
+
+            const res = await fetch("/api/contact", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload)
+            });
+
+            if (res.ok) {
+              setStatus("success");
+              form.reset();
+            } else {
+              const body = await res.json();
+              setError(body?.error || "Something went wrong.");
+              setStatus("error");
+            }
           }}
         >
           <div className="grid gap-4 md:grid-cols-2">
@@ -34,6 +61,7 @@ export default function ContactPage() {
                 className="rounded-xl bg-white/5 border border-white/10 p-3 text-white focus:outline-none focus:border-cyan-300"
                 type="text"
                 placeholder="Your full name"
+                name="name"
               />
             </label>
             <label className="flex flex-col gap-2 text-sm text-slate-200">
@@ -43,6 +71,7 @@ export default function ContactPage() {
                 className="rounded-xl bg-white/5 border border-white/10 p-3 text-white focus:outline-none focus:border-cyan-300"
                 type="email"
                 placeholder="you@company.com"
+                name="email"
               />
             </label>
             <label className="flex flex-col gap-2 text-sm text-slate-200">
@@ -51,28 +80,34 @@ export default function ContactPage() {
                 className="rounded-xl bg-white/5 border border-white/10 p-3 text-white focus:outline-none focus:border-cyan-300"
                 type="text"
                 placeholder="Company or organization"
+                name="company"
               />
             </label>
             <label className="flex flex-col gap-2 text-sm text-slate-200">
-              Project Details
+              Phone
               <input
                 className="rounded-xl bg-white/5 border border-white/10 p-3 text-white focus:outline-none focus:border-cyan-300"
                 type="text"
-                placeholder="Location, timeline, vendor count"
+                placeholder="(555) 555-5555"
+                name="phone"
               />
             </label>
           </div>
           <label className="flex flex-col gap-2 text-sm text-slate-200">
-            Message
+            Project Details & Message
             <textarea
               className="rounded-xl bg-white/5 border border-white/10 p-3 text-white focus:outline-none focus:border-cyan-300 min-h-[140px]"
-              placeholder="Describe your FF&E program, timelines, and delivery needs."
+              placeholder="Share your vendor list, delivery windows, jobsite requirements, and FF&E program."
+              name="message"
             />
           </label>
           <div className="flex gap-3 flex-wrap items-center">
-            <Button type="submit" size="lg">Request a Quote</Button>
+            <Button type="submit" size="lg" disabled={status === "loading"}>
+              {status === "loading" ? "Sending..." : "Request a Quote"}
+            </Button>
             <Button type="button" variant="outline" size="lg">Schedule a Call</Button>
-            {submitted ? <span className="text-cyan-200 text-sm">Thanks—AMA will reach out shortly.</span> : null}
+            {status === "success" ? <span className="text-cyan-200 text-sm">Thanks—AMA will reach out shortly.</span> : null}
+            {status === "error" ? <span className="text-red-300 text-sm">{error}</span> : null}
           </div>
         </form>
 
