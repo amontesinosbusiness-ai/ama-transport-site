@@ -53,8 +53,27 @@ export function Footer() {
         <div>
           <p className="font-semibold text-white mb-3">Connect</p>
           <div className="flex gap-3 text-slate-300">
-            <a href="#" aria-label="LinkedIn" className="hover:text-white"><Linkedin size={18} /></a>
-            <a href="#" aria-label="Instagram" className="hover:text-white"><Instagram size={18} /></a>
+            {/* LINKEDIN LINK UPDATED HERE */}
+            <a 
+              href="https://www.linkedin.com/in/YOUR_LINKEDIN_URL_HERE" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="LinkedIn" 
+              className="hover:text-white"
+            >
+              <Linkedin size={18} />
+            </a>
+            
+            {/* INSTAGRAM LINK UPDATED HERE */}
+            <a 
+              href="https://www.instagram.com/YOUR_INSTAGRAM_URL_HERE" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              aria-label="Instagram" 
+              className="hover:text-white"
+            >
+              <Instagram size={18} />
+            </a>
           </div>
         </div>
       </div>
