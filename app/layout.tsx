@@ -1,5 +1,6 @@
 import { Footer } from "@/components/footer";
 import { Navbar } from "@/components/navbar";
+import { GoogleTagManager } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Space_Grotesk } from "next/font/google";
 import "./globals.css";
@@ -7,19 +8,27 @@ import "./globals.css";
 const grotesk = Space_Grotesk({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-grotesk"
+  variable: "--font-grotesk",
 });
 
 export const metadata: Metadata = {
   title: "AMA Transport Logistics | Hospitality FF&E Logistics",
   description:
-    "Premium hospitality FF&E logistics, international freight coordination, Miami warehousing, consolidation, and final mile delivery for restaurants, hotels, universities, and developers."
+    "Premium hospitality FF&E logistics, international freight coordination, Miami warehousing, consolidation, and final mile delivery for restaurants, hotels, universities, and developers.",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className="dark">
-      <body className={`${grotesk.className} bg-background text-foreground min-h-screen flex flex-col`}>
+      <body
+        className={`${grotesk.className} bg-background text-foreground min-h-screen flex flex-col`}
+      >
+        <GoogleTagManager gtmId="GTM-TW24CBGB" />
+
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
